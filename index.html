@@ -14,99 +14,50 @@
     />
     <link rel="stylesheet" href="bootstrap4.css" />
     <link rel="stylesheet" href="datables-bootstrap.css" />
-    <link rel="stylesheet" href="buttons-datables-file-export.css" />
     <style>
-      div.dataTables_wrapper div.dataTables_processing {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        height: auto;
-        font-size: 0.5rem;
-        line-height: 1rem;
-        width: 50px;
-        margin: 0;
+      #datatable_wrapper{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 10px;
+        background-color: #fff;
+        color: #444;
+      }
+      .dt-buttons, table.dataTable{
+        grid-column: 1 / span 2;
+      }
+      div.dt-buttons button{
+        display: inline-block;
+        padding: 6px 12px;
+        margin-bottom: 0;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 1.42857143;
         text-align: center;
-        border: none;
-        padding: 1em 0;
+        white-space: nowrap;
+        vertical-align: middle;
+        -ms-touch-action: manipulation;
+        touch-action: manipulation;
+        cursor: pointer;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        background-image: none;
+        border: 1px solid transparent;
+        border-top-color: transparent;
+        border-right-color: transparent;
+        border-bottom-color: transparent;
+        border-left-color: transparent;
+        border-radius: 4px;
+        color: #337ab7;
+        background-color: transparent;
+        border-color: #337ab7;
       }
-      
-      div.dt-buttons,
-      div.dt-buttons:hover{
-        background-color: #007bff;
-        border-radius: 15px;
-        border: none;
-        box-shadow: none;
-      }
-      button.dt-button:focus:not(.disabled), div.dt-button:focus:not(.disabled), a.dt-button:focus:not(.disabled), input.dt-button:focus:not(.disabled),
-      button.dt-button:active:not(.disabled), button.dt-button.active:not(.disabled), div.dt-button:active:not(.disabled), div.dt-button.active:not(.disabled), a.dt-button:active:not(.disabled), a.dt-button.active:not(.disabled), input.dt-button:active:not(.disabled), input.dt-button.active:not(.disabled),
-      button.dt-button:active:not(.disabled), button.dt-button.active:not(.disabled), div.dt-button:active:not(.disabled), div.dt-button.active:not(.disabled), a.dt-button:active:not(.disabled), a.dt-button.active:not(.disabled), input.dt-button:active:not(.disabled), input.dt-button.active:not(.disabled),
-      div.dt-buttons button.dt-button {
-        border: none;
-        margin: 0;
-        font-size: 1rem;
-        line-height: 1rem;
-        font-weight: bold;
-        padding: 10px;
-        background: transparent;
-        color: #FFF;
-        border-left: 1px solid #FFF;
-        box-shadow: none;
-      }
-      div.dt-buttons button.dt-button:first-of-type{
-        border-left: 0px solid #ccc;
-      }
-      div.dt-buttons button.dt-button:hover {
-        border: none;
-        border-left: 1px solid #ccc;
-        background: linear-gradient(to bottom, transparent, transparent);
-        box-shadow: none;
-      }
-      div.dt-buttons button.dt-button:hover:first-of-type{
-        border-left: 0px solid #ccc;
-      }
-      div.dt-button-collection{
-        box-shadow: none;
-      }
-      div.dt-button-collection button.dt-button:active:not(.disabled), div.dt-button-collection button.dt-button.active:not(.disabled), div.dt-button-collection div.dt-button:active:not(.disabled), div.dt-button-collection div.dt-button.active:not(.disabled), div.dt-button-collection a.dt-button:active:not(.disabled), div.dt-button-collection a.dt-button.active:not(.disabled),
-      button.dt-button:active:not(.disabled):hover:not(.disabled), button.dt-button.active:not(.disabled):hover:not(.disabled), div.dt-button:active:not(.disabled):hover:not(.disabled), div.dt-button.active:not(.disabled):hover:not(.disabled), a.dt-button:active:not(.disabled):hover:not(.disabled), a.dt-button.active:not(.disabled):hover:not(.disabled), input.dt-button:active:not(.disabled):hover:not(.disabled), input.dt-button.active:not(.disabled):hover:not(.disabled),
-      div.dt-button-collection button.dt-button,
-      div.dt-button-collection button.dt-button:active,
-      div.dt-button-collection button.dt-button:hover{
-        width: 90%;
-        margin: 0 auto;
-        background: linear-gradient(to bottom, transparent, transparent);
-        color: #222;
-        box-shadow: none;
-        border: none;
-      }
-      button.dt-button:active:not(.disabled):hover:not(.disabled), button.dt-button.active:not(.disabled):hover:not(.disabled), div.dt-button:active:not(.disabled):hover:not(.disabled), div.dt-button.active:not(.disabled):hover:not(.disabled), a.dt-button:active:not(.disabled):hover:not(.disabled), a.dt-button.active:not(.disabled):hover:not(.disabled), input.dt-button:active:not(.disabled):hover:not(.disabled), input.dt-button.active:not(.disabled):hover:not(.disabled),
-      div.dt-button-collection button.dt-button:hover{
-        background: #007bff;
-        color: #FFF;
-        border-radius: 10px;
-      }
-
-      @media (max-width: 600px) {
-        div.dt-buttons,
-        div.dt-buttons:hover{
-          background-color: #007bff;
-          border-radius: 15px;
-          border: none;
-          box-shadow: none;
-          margin: 10px auto;
-          display: flex;
-          flex-wrap: wrap;
-        }
-        button.dt-button:focus:not(.disabled), div.dt-button:focus:not(.disabled), a.dt-button:focus:not(.disabled), input.dt-button:focus:not(.disabled),
-        button.dt-button:active:not(.disabled), button.dt-button.active:not(.disabled), div.dt-button:active:not(.disabled), div.dt-button.active:not(.disabled), a.dt-button:active:not(.disabled), a.dt-button.active:not(.disabled), input.dt-button:active:not(.disabled), input.dt-button.active:not(.disabled),
-        button.dt-button:active:not(.disabled), button.dt-button.active:not(.disabled), div.dt-button:active:not(.disabled), div.dt-button.active:not(.disabled), a.dt-button:active:not(.disabled), a.dt-button.active:not(.disabled), input.dt-button:active:not(.disabled), input.dt-button.active:not(.disabled),
-        div.dt-buttons button.dt-button {
-          font-size: .9rem;
-          line-height: .9rem;
-          padding: 5px;
-          border: none;
-          margin: 10px auto;
-        }
+      th,tr,td{
+       max-width: 64px;
+       font-size: 10px;
+       padding: 6px 12px;
+       text-align: center;
       }
     </style>
   </head>
@@ -161,14 +112,13 @@
           dom: "Blfrtip",
           lengthMenu: [
             [10, 25, 50, -1],
-            ["10 Filas", "25 Filas", "50 Filas", "Mostrar todo"],
+            [10, 25, 50, 'All'],
           ],
-          dom: "Bfrtip",
           buttons: [
-            { extend: "copy", text: "Copiar conteúdo" },
-            { extend: "pdf", text: "Exportar em PDF" },
-            { extend: "excel", text: " Exportar em EXCEL" },
-            "pageLength"
+            { extend: "copy", text: "Copiar" },
+            { extend: "pdf", text: "PDF" },
+            { extend: "excel", text: "Planilha" },
+                 "lengthMenu" 
           ],
           ajax: "./data.php",
           columns: [
